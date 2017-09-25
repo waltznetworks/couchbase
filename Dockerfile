@@ -1,5 +1,5 @@
 # Autopilot pattern Couchbase
-FROM couchbase/server:enterprise-4.0.0
+FROM couchbase/server:community-4.5.1
 
 # install jq
 RUN apt-get update && \
