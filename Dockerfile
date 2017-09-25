@@ -8,10 +8,10 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 # get ContainerPilot release
-ENV CONTAINERPILOT_VERSION 2.0.0
+ENV CONTAINERPILOT_VERSION 2.7.4
 ENV CONTAINERPILOT file:///etc/containerpilot.json
 
-RUN export CP_SHA1=a82b1257328551eb93fc9a8cc1dd3f3e64664dd5 \
+RUN export CP_SHA1=073b7bc987f7bf0ca92ae5531d7df6eb02e31bfa \
     && curl -Lso /tmp/containerpilot.tar.gz \
          "https://github.com/joyent/containerpilot/releases/download/${CONTAINERPILOT_VERSION}/containerpilot-${CONTAINERPILOT_VERSION}.tar.gz" \
     && echo "${CP_SHA1}  /tmp/containerpilot.tar.gz" | sha1sum -c \
