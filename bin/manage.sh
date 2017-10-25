@@ -165,14 +165,18 @@ initCluster() {
 
     # Couchbase resource limits
     local avail_memory=$(free -m | grep -o "Mem:\s*[0-9]*" | grep -o "[0-9]*")
-    local cb_memory=$((($avail_memory/10)*7))
+
+    local cb_memory=$((($avail_memory/10)*6))
+    local index_memory=$((($avail_memory/10)*2))
 
     couchbase-cli cluster-init -c 127.0.0.1:8091 -u access -p password \
                   --cluster-init-username=${COUCHBASE_USER} \
                   --cluster-init-password=${COUCHBASE_PASS} \
                   --cluster-init-port=8091 \
                   --cluster-init-ramsize=${cb_memory} \
-                  --services=data,index,query
+                  --cluster-index-ramsize=${index_memory} \
+                  --cluster-fts-ramsize=256 \
+                  --services=data,index,query,fts
 
     echo '# Cluster bootstrapped'
     echo
