@@ -12,7 +12,7 @@ help() {
 trap cleanup EXIT
 
 # This container's private IP
-export IP_PRIVATE=$(ip addr show eth0 | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
+export IP_PRIVATE=$(ip addr show eth0 | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | head -n 1)
 
 # Discovery vars
 COUCHBASE_SERVICE_NAME=${COUCHBASE_SERVICE_NAME:-couchbase-api}
